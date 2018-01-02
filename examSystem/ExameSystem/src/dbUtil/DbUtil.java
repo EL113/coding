@@ -26,12 +26,16 @@ import java.sql.Statement;
  */
 public class DbUtil {
     private static Connection con;
+    private static final String databaseName = "test";
+    private static final String userId = "root";
+    private static final String databasePassword = "SQL1137660";
     
     private static void createConnection(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=gb2312&useSSL=false", "root","Daniel1137660");
+            con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+databaseName+"?useUnicode=true&characterEncoding=gb2312&useSSL=false", userId,databasePassword);
         }catch(Exception ex){
+            ex.printStackTrace();
         }
     }
     

@@ -175,7 +175,12 @@ public class Login extends javax.swing.JPanel {
             statement.setString(2, password);
             ResultSet result = statement.executeQuery();
             
-            if(result.next() && id.equals(String.valueOf(result.getLong("id"))) && password.equals(result.getString("password"))){
+            if(result.next()){
+                if(!id.equals(String.valueOf(result.getLong("id"))) || !password.equals(result.getString("password"))){
+                    JOptionPane.showMessageDialog(this, "账号或密码不正确", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                
                 MainFrame.datas.put("id", id);
                 JPanel userPanel;
                 if(1 == result.getInt("root")){
@@ -189,9 +194,8 @@ public class Login extends javax.swing.JPanel {
                 MainFrame.mainFrame.remove(MainFrame.mainFrame.getContentPane());
                 MainFrame.mainFrame.setContentPane(userPanel);
                 MainFrame.mainFrame.validate();
-                
             }else{
-                JOptionPane.showMessageDialog(this, "登录失败", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "账号未注册", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);

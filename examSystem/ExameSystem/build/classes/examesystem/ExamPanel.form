@@ -43,7 +43,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="optionc4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jRadioButton13" min="-2" max="-2" attributes="0"/>
+                              <Component id="optiond4" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="optiona3" min="-2" max="-2" attributes="0"/>
@@ -52,7 +52,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="optionc3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jRadioButton9" min="-2" max="-2" attributes="0"/>
+                              <Component id="optiond3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="optiona2" min="-2" max="-2" attributes="0"/>
@@ -83,7 +83,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="optionc5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton17" min="-2" max="-2" attributes="0"/>
+                                  <Component id="optiond5" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -128,7 +128,7 @@
                   <Component id="optiona3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="optionb3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="optionc3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jRadioButton9" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="optiond3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="q4" min="-2" pref="36" max="-2" attributes="0"/>
@@ -137,7 +137,7 @@
                   <Component id="optiona4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="optionb4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="optionc4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jRadioButton13" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="optiond4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="q5" min="-2" pref="36" max="-2" attributes="0"/>
@@ -146,7 +146,7 @@
                   <Component id="optiona5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="optionb5" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="optionc5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jRadioButton17" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="optiond5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="15" max="32767" attributes="0"/>
               <Component id="confirm" min="-2" max="-2" attributes="0"/>
@@ -235,14 +235,6 @@
         <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton9">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup3"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jRadioButton8"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JRadioButton" name="optiona3">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
@@ -267,17 +259,17 @@
         <Property name="text" type="java.lang.String" value="jRadioButton7"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JRadioButton" name="optiond3">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup3"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="jRadioButton8"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JLabel" name="q4">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel2"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton13">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup4"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jRadioButton8"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="optiona4">
@@ -304,17 +296,17 @@
         <Property name="text" type="java.lang.String" value="jRadioButton7"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JRadioButton" name="optiond4">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup4"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="jRadioButton8"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JLabel" name="q5">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel2"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="jRadioButton17">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="buttonGroup5"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="jRadioButton8"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="optiona5">
@@ -339,6 +331,14 @@
           <ComponentRef name="buttonGroup5"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jRadioButton7"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="optiond5">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="buttonGroup5"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="jRadioButton8"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="confirm">

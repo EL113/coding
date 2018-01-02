@@ -14,11 +14,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 
 /**
  *
@@ -43,6 +46,7 @@ public class AdministerPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         myInfo = new javax.swing.JPanel();
         genderLable = new javax.swing.JLabel();
@@ -62,6 +66,9 @@ public class AdministerPanel extends javax.swing.JPanel {
         passwordText = new javax.swing.JPasswordField();
         password2Lable = new javax.swing.JLabel();
         password2Text = new javax.swing.JPasswordField();
+        changeUserBtn = new javax.swing.JButton();
+        idCardLabel = new javax.swing.JLabel();
+        idCardText = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         userQuery = new javax.swing.JTextField();
         userDeleteBtn = new javax.swing.JButton();
@@ -69,6 +76,8 @@ public class AdministerPanel extends javax.swing.JPanel {
         userSelect = new javax.swing.JComboBox();
         jScrollPane3 = new javax.swing.JScrollPane();
         userList = new javax.swing.JList<>();
+        upRoot = new javax.swing.JButton();
+        deRoot = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         scoreSelect = new javax.swing.JComboBox();
         scoreQueryText = new javax.swing.JTextField();
@@ -83,6 +92,7 @@ public class AdministerPanel extends javax.swing.JPanel {
         genderLable.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
         genderLable.setText("性别：");
 
+        buttonGroup1.add(femaleButton);
         femaleButton.setText("女");
         femaleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +114,7 @@ public class AdministerPanel extends javax.swing.JPanel {
         nameLable.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         nameLable.setText("姓名：");
 
+        buttonGroup1.add(maleButton);
         maleButton.setSelected(true);
         maleButton.setText("男");
         maleButton.addActionListener(new java.awt.event.ActionListener() {
@@ -135,6 +146,16 @@ public class AdministerPanel extends javax.swing.JPanel {
         password2Lable.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
         password2Lable.setText("请再输一次：");
 
+        changeUserBtn.setText("注销");
+        changeUserBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeUserBtnActionPerformed(evt);
+            }
+        });
+
+        idCardLabel.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+        idCardLabel.setText("身份证号码：");
+
         javax.swing.GroupLayout myInfoLayout = new javax.swing.GroupLayout(myInfo);
         myInfo.setLayout(myInfoLayout);
         myInfoLayout.setHorizontalGroup(
@@ -149,11 +170,11 @@ public class AdministerPanel extends javax.swing.JPanel {
                     .addGroup(myInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(myInfoLayout.createSequentialGroup()
                             .addGap(29, 29, 29)
-                            .addGroup(myInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(myInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(myInfoLayout.createSequentialGroup()
                                     .addComponent(phoneLable)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(passwordText))
+                                    .addComponent(phoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(myInfoLayout.createSequentialGroup()
                                     .addGroup(myInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(genderLable)
@@ -172,17 +193,28 @@ public class AdministerPanel extends javax.swing.JPanel {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, myInfoLayout.createSequentialGroup()
                             .addComponent(passwordLable, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(phoneText, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(passwordText, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(4, 4, 4)))
                     .addGroup(myInfoLayout.createSequentialGroup()
                         .addComponent(password2Lable)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(password2Text, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(205, Short.MAX_VALUE))
+                        .addComponent(password2Text, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(myInfoLayout.createSequentialGroup()
+                        .addComponent(idCardLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(idCardText, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(216, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, myInfoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(changeUserBtn)
+                .addGap(89, 89, 89))
         );
         myInfoLayout.setVerticalGroup(
             myInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, myInfoLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(26, 26, 26)
+                .addComponent(changeUserBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(myInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idLable))
@@ -202,28 +234,33 @@ public class AdministerPanel extends javax.swing.JPanel {
                     .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(myInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(phoneLable))
-                .addGap(18, 18, 18)
+                    .addComponent(phoneLable)
+                    .addComponent(phoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(myInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordLable))
+                    .addComponent(idCardLabel)
+                    .addComponent(idCardText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(myInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passwordLable)
+                    .addComponent(passwordText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(myInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(password2Text, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(password2Lable))
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addGroup(myInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmButton)
                     .addComponent(editButton))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("我的信息", myInfo);
 
+        userQuery.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
         userQuery.setText("请输入搜索条件");
 
-        userDeleteBtn.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+        userDeleteBtn.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
         userDeleteBtn.setText("删除");
         userDeleteBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         userDeleteBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -232,7 +269,7 @@ public class AdministerPanel extends javax.swing.JPanel {
             }
         });
 
-        searchUserButton.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+        searchUserButton.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
         searchUserButton.setText("搜索");
         searchUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,40 +278,50 @@ public class AdministerPanel extends javax.swing.JPanel {
         });
 
         userSelect.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
-        userSelect.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "请选择", "id", "name", "sex", "idcard", "phone", "email" }));
+        userSelect.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "请选择", "id", "name", "sex", "idcard", "phone", "email", "root" }));
         userSelect.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 userSelectItemStateChanged(evt);
             }
         });
 
-        userList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         userList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(userList);
+
+        upRoot.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+        upRoot.setText("设为管理员");
+        upRoot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upRootActionPerformed(evt);
+            }
+        });
+
+        deRoot.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+        deRoot.setText("设为普通用户");
+        deRoot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deRootActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
                         .addComponent(userSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(userQuery)
-                        .addGap(18, 18, 18)
-                        .addComponent(searchUserButton))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(78, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(userDeleteBtn)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(48, 48, 48))
+                        .addComponent(userQuery, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(searchUserButton)
+                    .addComponent(deRoot)
+                    .addComponent(userDeleteBtn)
+                    .addComponent(upRoot)))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,16 +332,22 @@ public class AdministerPanel extends javax.swing.JPanel {
                     .addComponent(userSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchUserButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(userDeleteBtn)
-                .addGap(29, 29, 29))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(upRoot)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deRoot)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(userDeleteBtn)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(76, 76, 76))
         );
 
         jTabbedPane1.addTab("管理用户", jPanel2);
 
         scoreSelect.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
-        scoreSelect.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "请选择", "id", "name", "sex", "grade", "phone", "email" }));
+        scoreSelect.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "请选择", "user_id", "name", "sex", "sc", "phone", "email" }));
         scoreSelect.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 scoreSelectItemStateChanged(evt);
@@ -312,17 +365,17 @@ public class AdministerPanel extends javax.swing.JPanel {
             }
         });
 
-        scoreList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(scoreList);
 
-        conditionModifierSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "请选择", "大于", "小于", "等于" }));
+        conditionModifierSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "请选择", ">", "<", "=" }));
         conditionModifierSelect.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 conditionModifierSelectItemStateChanged(evt);
+            }
+        });
+        conditionModifierSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                conditionModifierSelectActionPerformed(evt);
             }
         });
 
@@ -351,7 +404,7 @@ public class AdministerPanel extends javax.swing.JPanel {
                             .addComponent(scoreQueryText)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(searchGradeButton))))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,9 +417,9 @@ public class AdministerPanel extends javax.swing.JPanel {
                     .addComponent(searchGradeButton))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scoreDeleteBtn)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("管理成绩", jPanel3);
@@ -385,30 +438,29 @@ public class AdministerPanel extends javax.swing.JPanel {
 
     private void femaleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleButtonActionPerformed
         // TODO add your handling code here:
-        gender = 0;
     }//GEN-LAST:event_femaleButtonActionPerformed
 
     private void maleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maleButtonActionPerformed
         // TODO add your handling code here:
-        gender = 1;
     }//GEN-LAST:event_maleButtonActionPerformed
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
-        passwordText.setEditable(true);
-        password2Text.setEditable(true);
-        emailText.setEditable(true);
-        phoneText.setEditable(true);
-        maleButton.setEnabled(true);
-        femaleButton.setEnabled(true);
+        changeEditable(true);
     }//GEN-LAST:event_editButtonActionPerformed
 
+    //用户资料修改 确定按钮
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         // TODO add your handling code here:
         String p1 = passwordText.getText().trim();
         String p2 = password2Text.getText().trim();
         String email = emailText.getText().trim();
         String phone = phoneText.getText().trim();
+        if(maleButton.isSelected()){
+            gender = 0;
+        }else{
+            gender = 1;
+        }
         Pattern p = Pattern.compile("^1[34578]\\d{9}$");    // 正则表达式// 正则表达式验证手机号
         Matcher m = p.matcher(phone);
         Pattern pattern = Pattern.compile("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$");
@@ -425,7 +477,7 @@ public class AdministerPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "密码不得少于6位", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
-                PreparedStatement ps = DbUtil.getStatement("update user set sex=?,email=?,phone=?,password=? where id = ?");
+                PreparedStatement ps = DbUtil.getStatement("update users set sex=?,email=?,phone=?,password=? where id = ?");
                 ps.setInt(1, gender);
                 ps.setString(2, email);
                 ps.setString(3, phone);
@@ -434,35 +486,31 @@ public class AdministerPanel extends javax.swing.JPanel {
                 ps.executeUpdate();
                 JOptionPane.showMessageDialog(this, "修改成功！", "Succesed", JOptionPane.INFORMATION_MESSAGE);
             } catch (HeadlessException | SQLException e) {
-                System.out.print("eeeee!");
+                e.printStackTrace();
             }
         }
-        passwordText.setEditable(false);
-        password2Text.setEditable(false);
-        emailText.setEditable(false);
-        phoneText.setEditable(false);
-        maleButton.setEnabled(false);
-        femaleButton.setEnabled(false);
+        changeEditable(false);
     }//GEN-LAST:event_confirmButtonActionPerformed
 
+    //用户管理 删除用户
     private void userDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userDeleteBtnActionPerformed
         // TODO add your handling code here:
-        String userDel = userList.getSelectedValue();
-        if(userDel == null){
-            return;
+        List<String> selectedUsers = userList.getSelectedValuesList();
+        for(String selectedUser: selectedUsers){
+            int endIndex = selectedUser.indexOf(" 姓名");
+            String userId = selectedUser.substring(5, endIndex);
+            try {
+                PreparedStatement ps = DbUtil.getStatement("delete from users where id = ?");
+                ps.setString(1, userId);
+                ps.execute();
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        int endIndex = userDel.indexOf(" name:");
-        String userDelId = userDel.substring(3, --endIndex);
-        try {
-            PreparedStatement ps = DbUtil.getStatement("delete from user where id = ?");
-            ps.setString(1, userDelId);
-            ps.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(AdministerPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        JOptionPane.showMessageDialog(this, "修改成功！", "Succesed", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_userDeleteBtnActionPerformed
 
+    //用户管理 搜索用户
     private void searchUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserButtonActionPerformed
         // TODO add your handling code here:
         users.clear();
@@ -470,7 +518,7 @@ public class AdministerPanel extends javax.swing.JPanel {
         userList.setListData(empty);
         String searchKey = userQuery.getText();
         try {
-            PreparedStatement ps = DbUtil.getStatement("select * from user where "+searchCondition+"=?");
+            PreparedStatement ps = DbUtil.getStatement("select * from users where "+searchCondition+"=?");
             ps.setString(1, searchKey);
             ResultSet result = ps.executeQuery();
             while(result.next()){
@@ -481,19 +529,27 @@ public class AdministerPanel extends javax.swing.JPanel {
                 String idCard = result.getString("idcard");
                 String phone = result.getString("phone");
                 String email = result.getString("email");
-                String user = userStr.append("id:").append(id)
-                        .append(" name:").append(name)
-                        .append(" idCard:").append(idCard)
-                        .append(" phone:").append(phone)
-                        .append(" email:").append(email).toString();
+                String isRoot = result.getString("root").equals("0")?"否":"是";
+                String user = userStr.append("用户id:").append(id)
+                        .append(" 姓名:").append(name)
+                        .append(" 性别：").append(sex)
+                        .append(" 身份证号:").append(idCard)
+                        .append(" 电话号码:").append(phone)
+                        .append(" 电子邮件:").append(email)
+                        .append(" 管理员：").append(isRoot).toString();
+                System.out.println(user);
                 users.add(user);
             }
-            userList.setListData((String[])users.toArray());
+            //列表转数组
+            String[] userArray = listToArray(users);
+            ListModel jListModel =  new DefaultComboBoxModel(userArray);
+            userList.setModel(jListModel);
         } catch (SQLException ex) {
             Logger.getLogger(AdministerPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_searchUserButtonActionPerformed
 
+    //用户管理 选择用户搜索条件
     private void userSelectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_userSelectItemStateChanged
         // TODO add your handling code here:
         if (evt.getStateChange() == ItemEvent.SELECTED) {
@@ -501,6 +557,7 @@ public class AdministerPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_userSelectItemStateChanged
 
+    //成绩管理 选择搜索成绩条件
     private void scoreSelectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_scoreSelectItemStateChanged
         // TODO add your handling code here:
         if (evt.getStateChange() == ItemEvent.SELECTED) {
@@ -508,23 +565,26 @@ public class AdministerPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_scoreSelectItemStateChanged
 
+    //成绩管理 删除成绩
     private void scoreDeleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scoreDeleteBtnActionPerformed
         // TODO add your handling code here:
-        String scoreDel = scoreList.getSelectedValue();
-        if(scoreDel == null){
-            return;
+        List<String> scoreDelList = scoreList.getSelectedValuesList();
+        
+        for(String scoreDel: scoreDelList){
+            int endIndex = scoreDel.indexOf("  用户");
+            String scoreDelId = scoreDel.substring(5, endIndex);
+            try {
+                PreparedStatement ps = DbUtil.getStatement("delete from score where id = ?");
+                ps.setString(1, scoreDelId);
+                ps.execute();
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        int endIndex = scoreDel.indexOf(" name:");
-        String scoreDelId = scoreDel.substring(3, --endIndex);
-        try {
-            PreparedStatement ps = DbUtil.getStatement("delete from score where id = ?");
-            ps.setString(1, scoreDelId);
-            ps.execute();
-        } catch (SQLException ex) {
-            Logger.getLogger(AdministerPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        JOptionPane.showMessageDialog(this, "修改成功！", "Succesed", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_scoreDeleteBtnActionPerformed
 
+    //成绩管理 选择条件标识符
     private void conditionModifierSelectItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_conditionModifierSelectItemStateChanged
         // TODO add your handling code here:
         if (evt.getStateChange() == ItemEvent.SELECTED) {
@@ -532,41 +592,96 @@ public class AdministerPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_conditionModifierSelectItemStateChanged
 
+    //成绩管理 搜索成绩
     private void searchGradeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchGradeButtonActionPerformed
         // TODO add your handling code here:
         String[] empty = {" "};
         scoreList.setListData(empty);
         scores.clear();
-        String scoreSearch = "select score.*, users.name from score inner join users on score.id =  where"
-                + scoreSelect + conditionModifier + scoreQueryText.getText();
-        
+        String scoreSearch = "select score.id, score.user_id, score.sc, score.time, users.name from users inner join score on users.id = score.user_id where "
+                + searchCondition + conditionModifier + scoreQueryText.getText();
+        System.out.println(scoreSearch);
         try {
             Statement statement = DbUtil.getSqlStatement();
             ResultSet result = statement.executeQuery(scoreSearch);
             while(result.next()){
                 StringBuilder scoreBuilder = new StringBuilder();
-                String id = result.getString("id");
-                String score = result.getString("score");
+                String testId = result.getString("id");
+                String userId = result.getString("user_id");
+                String score = result.getString("sc");
                 String time = result.getString("time");
                 String name = result.getString("name");
-                String scoreStr = scoreBuilder.append("id:").append(id)
-                        .append("name:").append(name)
-                        .append("score:").append(score)
-                        .append("time:").append(time).toString();
-                scores.add(score);
+                String scoreStr = scoreBuilder.append("成绩id:").append(testId)
+                        .append("  用户id:").append(userId)
+                        .append("  姓名:").append(name)
+                        .append("  分数:").append(score)
+                        .append("  考试时间:").append(time).toString();
+                scores.add(scoreStr);
             }
         } catch (SQLException ex) {
             Logger.getLogger(AdministerPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        scoreList.setListData((String[])scores.toArray());
+        ListModel jListModel =  new DefaultComboBoxModel(listToArray(scores));
+        scoreList.setModel(jListModel);
     }//GEN-LAST:event_searchGradeButtonActionPerformed
 
+    //注销按钮
+    private void changeUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeUserBtnActionPerformed
+        // TODO add your handling code here:
+        Login login = new Login();
+        MainFrame.mainFrame.remove(MainFrame.mainFrame.getContentPane());
+        MainFrame.mainFrame.setContentPane(login);
+        MainFrame.mainFrame.validate();
+    }//GEN-LAST:event_changeUserBtnActionPerformed
+
+    //用户管理 把用户标记为管理员
+    private void upRootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upRootActionPerformed
+        // TODO add your handling code here:
+        List<String> selectedUsers = userList.getSelectedValuesList();
+        for(String selectedUser: selectedUsers){
+            int endIndex = selectedUser.indexOf(" 姓名");
+            String userId = selectedUser.substring(5, endIndex);
+            try {
+                PreparedStatement ps = DbUtil.getStatement("update users set root = 1 where id = ?");
+                ps.setString(1, userId);
+                ps.execute();
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        JOptionPane.showMessageDialog(this, "修改成功！", "Succesed", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_upRootActionPerformed
+
+    //标记用户为普通用户
+    private void deRootActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deRootActionPerformed
+        // TODO add your handling code here:
+        List<String> selectedUsers = userList.getSelectedValuesList();
+        for(String selectedUser: selectedUsers){
+            int endIndex = selectedUser.indexOf(" 姓名");
+            String userId = selectedUser.substring(5, endIndex);
+            try {
+                PreparedStatement ps = DbUtil.getStatement("update users set root = 0 where id = ?");
+                ps.setString(1, userId);
+                ps.execute();
+            } catch (SQLException ex) {
+                Logger.getLogger(AdministerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        JOptionPane.showMessageDialog(this, "修改成功！", "Succesed", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_deRootActionPerformed
+
+    private void conditionModifierSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conditionModifierSelectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_conditionModifierSelectActionPerformed
+
+    //填充用户数据
     private void setData() {
+        idText.setEditable(true);
+        nameText.setEditable(true);
+        changeEditable(true);
         id = MainFrame.datas.get("id");
         try {
-            PreparedStatement ps = DbUtil.getStatement("select * from user where id = ?");
-            PreparedStatement scorePs = DbUtil.getStatement("select * from users");
-            scorePs.setString(1, id);
+            PreparedStatement ps = DbUtil.getStatement("select * from users where id = ?");
             ps.setString(1, id);
             //填充用户信息
             ResultSet result = ps.executeQuery();
@@ -575,13 +690,15 @@ public class AdministerPanel extends javax.swing.JPanel {
                String sex = result.getString("sex");
                String phone = result.getString("phone");
                String email = result.getString("email");
+               String idCard = result.getString("idcard");
                String password = result.getString("password");
                idText.setText(id);
                nameText.setText(name);
                emailText.setText(email);
+               passwordText.setText(password);
                phoneText.setText(phone);
-               passwordText.setText("password");
-               password2Text.setText("password");
+               password2Text.setText(password);
+               idCardText.setText(idCard);
                if("0".equals(sex)){
                    maleButton.setSelected(true);
                    femaleButton.setSelected(false);
@@ -590,26 +707,53 @@ public class AdministerPanel extends javax.swing.JPanel {
                    femaleButton.setSelected(true);
                }
             }
-            
         } catch (SQLException ex) {
             Logger.getLogger(StudentPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
+        changeEditable(false);
+        idText.setEditable(false);
+        nameText.setEditable(false);
+    }
+    
+    //修改按钮
+    private void changeEditable(boolean isEditable){
+        phoneText.setEditable(isEditable);
+        password2Text.setEditable(isEditable);
+        emailText.setEditable(isEditable);
+        passwordText.setEditable(isEditable);
+        maleButton.setEnabled(isEditable);
+        femaleButton.setEnabled(isEditable);
+        idCardText.setEditable(isEditable);
     }
 
+    //列表转数组
+    private String[] listToArray(List list){
+        String[] array = new String[list.size()];
+            for(int i=0; i<list.size();i++){
+                array[i] = (String)list.get(i);
+            }
+        return array;
+    }
+    
     private String searchCondition;
     private int gender;
     private String id;
-    private ArrayList<String> users;
-    private ArrayList<String> scores;
+    private ArrayList<String> users = new ArrayList<>();
+    private ArrayList<String> scores = new ArrayList<>();
     private String conditionModifier;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton changeUserBtn;
     private javax.swing.JComboBox<String> conditionModifierSelect;
     private javax.swing.JButton confirmButton;
+    private javax.swing.JButton deRoot;
     private javax.swing.JButton editButton;
     private javax.swing.JLabel emailLable1;
     private javax.swing.JTextField emailText;
     private javax.swing.JRadioButton femaleButton;
     private javax.swing.JLabel genderLable;
+    private javax.swing.JLabel idCardLabel;
+    private javax.swing.JTextField idCardText;
     private javax.swing.JLabel idLable;
     private javax.swing.JTextField idText;
     private javax.swing.JPanel jPanel2;
@@ -633,6 +777,7 @@ public class AdministerPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox scoreSelect;
     private javax.swing.JButton searchGradeButton;
     private javax.swing.JButton searchUserButton;
+    private javax.swing.JButton upRoot;
     private javax.swing.JButton userDeleteBtn;
     private javax.swing.JList<String> userList;
     private javax.swing.JTextField userQuery;

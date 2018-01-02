@@ -11,7 +11,9 @@ package test;
  */
 public class test {
     public static void main(String[] args){
-        String test = String.format("this is a %s", "test");
-        System.out.println(test);
+        String test = "成绩id:1  用户id:123456  姓名:留下  分数:0  考试时间:2018-01-02 12:47:10.0";
+        int endIndex = test.indexOf("  用户");
+        String subStr = test.substring(5, endIndex);
+        System.out.println(subStr);
     }
 }

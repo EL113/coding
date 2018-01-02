@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,7 +31,7 @@ public class ExamPanel extends javax.swing.JPanel {
     public ExamPanel() {
         initComponents();
         groupComponents();
-        getData();
+        setData();
     }
 
     /**
@@ -58,20 +59,20 @@ public class ExamPanel extends javax.swing.JPanel {
         optionc2 = new javax.swing.JRadioButton();
         jRadioButton8 = new javax.swing.JRadioButton();
         q3 = new javax.swing.JLabel();
-        jRadioButton9 = new javax.swing.JRadioButton();
         optiona3 = new javax.swing.JRadioButton();
         optionb3 = new javax.swing.JRadioButton();
         optionc3 = new javax.swing.JRadioButton();
+        optiond3 = new javax.swing.JRadioButton();
         q4 = new javax.swing.JLabel();
-        jRadioButton13 = new javax.swing.JRadioButton();
         optiona4 = new javax.swing.JRadioButton();
         optionb4 = new javax.swing.JRadioButton();
         optionc4 = new javax.swing.JRadioButton();
+        optiond4 = new javax.swing.JRadioButton();
         q5 = new javax.swing.JLabel();
-        jRadioButton17 = new javax.swing.JRadioButton();
         optiona5 = new javax.swing.JRadioButton();
         optionb5 = new javax.swing.JRadioButton();
         optionc5 = new javax.swing.JRadioButton();
+        optiond5 = new javax.swing.JRadioButton();
         confirm = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -105,9 +106,6 @@ public class ExamPanel extends javax.swing.JPanel {
 
         q3.setText("jLabel2");
 
-        buttonGroup3.add(jRadioButton9);
-        jRadioButton9.setText("jRadioButton8");
-
         buttonGroup3.add(optiona3);
         optiona3.setText("jRadioButton5");
 
@@ -117,10 +115,10 @@ public class ExamPanel extends javax.swing.JPanel {
         buttonGroup3.add(optionc3);
         optionc3.setText("jRadioButton7");
 
-        q4.setText("jLabel2");
+        buttonGroup3.add(optiond3);
+        optiond3.setText("jRadioButton8");
 
-        buttonGroup4.add(jRadioButton13);
-        jRadioButton13.setText("jRadioButton8");
+        q4.setText("jLabel2");
 
         buttonGroup4.add(optiona4);
         optiona4.setText("jRadioButton5");
@@ -131,10 +129,10 @@ public class ExamPanel extends javax.swing.JPanel {
         buttonGroup4.add(optionc4);
         optionc4.setText("jRadioButton7");
 
-        q5.setText("jLabel2");
+        buttonGroup4.add(optiond4);
+        optiond4.setText("jRadioButton8");
 
-        buttonGroup5.add(jRadioButton17);
-        jRadioButton17.setText("jRadioButton8");
+        q5.setText("jLabel2");
 
         buttonGroup5.add(optiona5);
         optiona5.setText("jRadioButton5");
@@ -144,6 +142,9 @@ public class ExamPanel extends javax.swing.JPanel {
 
         buttonGroup5.add(optionc5);
         optionc5.setText("jRadioButton7");
+
+        buttonGroup5.add(optiond5);
+        optiond5.setText("jRadioButton8");
 
         confirm.setText("完成");
         confirm.addActionListener(new java.awt.event.ActionListener() {
@@ -173,7 +174,7 @@ public class ExamPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(optionc4)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton13))
+                                .addComponent(optiond4))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(optiona3)
                                 .addGap(18, 18, 18)
@@ -181,7 +182,7 @@ public class ExamPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(optionc3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jRadioButton9))
+                                .addComponent(optiond3))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(optiona2)
                                 .addGap(18, 18, 18)
@@ -209,7 +210,7 @@ public class ExamPanel extends javax.swing.JPanel {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(optionc5)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jRadioButton17)))
+                                    .addComponent(optiond5)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                                 .addGap(123, 123, 123)))
@@ -244,7 +245,7 @@ public class ExamPanel extends javax.swing.JPanel {
                     .addComponent(optiona3)
                     .addComponent(optionb3)
                     .addComponent(optionc3)
-                    .addComponent(jRadioButton9))
+                    .addComponent(optiond3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(q4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -252,7 +253,7 @@ public class ExamPanel extends javax.swing.JPanel {
                     .addComponent(optiona4)
                     .addComponent(optionb4)
                     .addComponent(optionc4)
-                    .addComponent(jRadioButton13))
+                    .addComponent(optiond4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(q5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -260,7 +261,7 @@ public class ExamPanel extends javax.swing.JPanel {
                     .addComponent(optiona5)
                     .addComponent(optionb5)
                     .addComponent(optionc5)
-                    .addComponent(jRadioButton17))
+                    .addComponent(optiond5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addComponent(confirm)
                 .addContainerGap())
@@ -270,30 +271,42 @@ public class ExamPanel extends javax.swing.JPanel {
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
         try {
             // TODO add your handling code here:
+            int grade = 0;
             result.first();
             //遍历题目
             for(ButtonGroup optionsGroup: optionsGroups){
                 Enumeration<AbstractButton> radioBtns = optionsGroup.getElements();  
-                //遍历每个题目的选项
-                while (radioBtns.hasMoreElements()) {  
-                    char answerIdentifier = 'a';
+                //遍历每个题目的四个选项
+                char answerIdentifier = 'A';
+                while (radioBtns.hasMoreElements()) { 
                     AbstractButton btn = radioBtns.nextElement();  
-                    if(btn.isSelected()){
-                        result.getString("answer").equals(answerIdentifier);
+                    if(btn.isSelected() && result.getString("answer").equals(String.valueOf(answerIdentifier))){
+                        ++grade;
                     }
                     answerIdentifier++;
                 }
                 result.next();
             }
+            
+            JOptionPane.showMessageDialog(this, "考试结束你的分数是" + grade, "成绩", JOptionPane.ERROR_MESSAGE);
+            PreparedStatement ps = DbUtil.getStatement("insert into score (`user_id`, `sc`)values(?, ?)");
+            ps.setString(1, MainFrame.datas.get("id"));
+            ps.setInt(2, grade);
+            ps.execute();
+            StudentPanel studentPanel = new StudentPanel();
+            MainFrame.mainFrame.remove( MainFrame.mainFrame.getContentPane());
+            MainFrame.mainFrame.setContentPane(studentPanel);
+            MainFrame.mainFrame.validate();
         } catch (SQLException ex) {
             Logger.getLogger(ExamPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }//GEN-LAST:event_confirmActionPerformed
 
 
     private ResultSet result;
-    private ArrayList<ButtonGroup> optionsGroups;
-    private ArrayList<JLabel> questionLabels;
+    private ArrayList<ButtonGroup> optionsGroups = new ArrayList<>();
+    private ArrayList<JLabel> questionLabels = new ArrayList<>();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -302,10 +315,7 @@ public class ExamPanel extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JButton confirm;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton13;
-    private javax.swing.JRadioButton jRadioButton17;
     private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JRadioButton jRadioButton9;
     private javax.swing.JRadioButton optiona1;
     private javax.swing.JRadioButton optiona2;
     private javax.swing.JRadioButton optiona3;
@@ -322,6 +332,9 @@ public class ExamPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton optionc4;
     private javax.swing.JRadioButton optionc5;
     private javax.swing.JRadioButton optiond1;
+    private javax.swing.JRadioButton optiond3;
+    private javax.swing.JRadioButton optiond4;
+    private javax.swing.JRadioButton optiond5;
     private javax.swing.JLabel q1;
     private javax.swing.JLabel q2;
     private javax.swing.JLabel q3;
@@ -334,6 +347,7 @@ public class ExamPanel extends javax.swing.JPanel {
         optionsGroups.add(buttonGroup2);
         optionsGroups.add(buttonGroup3);
         optionsGroups.add(buttonGroup4);
+        optionsGroups.add(buttonGroup5);
         questionLabels.add(q1);
         questionLabels.add(q2);
         questionLabels.add(q3);
@@ -341,23 +355,23 @@ public class ExamPanel extends javax.swing.JPanel {
         questionLabels.add(q5);
     }
 
-    private void getData() {
+    private void setData() {
         Random random = new Random();
         int startIndex = random.nextInt(5);
         try {
-            PreparedStatement ps = DbUtil.getStatement("select * from score where id >= ? LIMIT 5");
+            PreparedStatement ps = DbUtil.getStatement("select * from test where testID >= ? LIMIT 5");
             ps.setInt(1, startIndex);
             result = ps.executeQuery();
             for(int i=0; i < questionLabels.size();i++){
                 result.next();
                 //填充问题
                 JLabel question = questionLabels.get(i);
-                question.setText(result.getString("text"));
+                question.setText((i+1)+":"+result.getString("text"));
                 //填充选项
                 ButtonGroup optionGroup = optionsGroups.get(i);
                 Enumeration<AbstractButton> radioBtns = optionGroup.getElements();  
+                char identifier = 'A';
                 while (radioBtns.hasMoreElements()) {  
-                    char identifier = 'a';
                     AbstractButton btn = radioBtns.nextElement();  
                     btn.setText(result.getString("option" + identifier));
                     identifier++;

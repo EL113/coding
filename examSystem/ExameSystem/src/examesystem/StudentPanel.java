@@ -11,13 +11,16 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 
 /**
  *
@@ -245,11 +248,11 @@ public class StudentPanel extends javax.swing.JPanel {
                     .addComponent(idCardLable)
                     .addComponent(idCardText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(myInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(myInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(phoneLable)
                     .addComponent(phoneText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(myInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(myInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(passwordLable)
                     .addComponent(passwordText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -282,13 +285,13 @@ public class StudentPanel extends javax.swing.JPanel {
         myTestLayout.setHorizontalGroup(
             myTestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(myTestLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(myTestLayout.createSequentialGroup()
                 .addGap(248, 248, 248)
                 .addComponent(startExamButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(368, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, myTestLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         myTestLayout.setVerticalGroup(
             myTestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,6 +375,11 @@ public class StudentPanel extends javax.swing.JPanel {
         String p2 = password2Text.getText().trim();
         String email = emailText.getText().trim();
         String phone = phoneText.getText().trim();
+        if(maleButton.isSelected()){
+            gender = 0;
+        }else{
+            gender = 1;
+        }
         Pattern p = Pattern.compile("^1[34578]\\d{9}$");    // 正则表达式// 正则表达式验证手机号
         Matcher m = p.matcher(phone);
         Pattern pattern = Pattern.compile("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$");
@@ -462,7 +470,7 @@ private int gender = 0;
         id = MainFrame.datas.get("id");
         try {
             PreparedStatement ps = DbUtil.getStatement("select * from users where id = ?");
-            PreparedStatement scorePs = DbUtil.getStatement("select * from score where id = ?");
+            PreparedStatement scorePs = DbUtil.getStatement("select * from score where user_id = ?");
             scorePs.setString(1, id);
             ps.setString(1, id);
             //填充用户信息
@@ -492,15 +500,23 @@ private int gender = 0;
             //填充用户分数
             ResultSet scoreResult = scorePs.executeQuery();
             ArrayList<String> scores = new ArrayList<>();
-            while(result.next()){
-                String score = scoreResult.getString("score");
-                Date time = scoreResult.getDate("time");
-                String exameResult = score + ":" + time.toString();
-                scores.add(exameResult);
+            while(scoreResult.next()){
+                StringBuilder stringBuilder = new StringBuilder();
+                String testId = scoreResult.getString("id");
+                String score = scoreResult.getString("sc");
+                String time = scoreResult.getString("time");
+                String exameItem = stringBuilder.append("考试id:").append(testId)
+                        .append(" 分数:").append(score)
+                        .append(" 考试时间：").append(time).toString();
+                scores.add(exameItem);
             }
-            String[] empty = {" "};
-            String[] scoresArray = scores.isEmpty() ? empty:(String[])scores.toArray();
-            scoreList.setListData(scoresArray);
+            //列表转数组
+            String[] scoresArray = new String[scores.size()];
+            for(int i=0; i<scores.size();i++){
+                scoresArray[i] = scores.get(i);
+            }
+            ListModel jListModel =  new DefaultComboBoxModel(scoresArray);
+            scoreList.setModel(jListModel);
         } catch (SQLException ex) {
             Logger.getLogger(StudentPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
