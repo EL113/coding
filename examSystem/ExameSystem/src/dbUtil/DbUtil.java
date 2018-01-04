@@ -17,39 +17,62 @@ package dbUtil;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Administrator
  */
 public class DbUtil {
-    private static Connection con;
-    private static final String databaseName = "test";
-    private static final String userId = "root";
-    private static final String databasePassword = "SQL1137660";
+    private static final String DATABASE_NAME = "test";
+    private static final String USRE_ID = "root";
+    private static final String DATABASE_PASSWORD = "SQL1137660";
+    private static String DATABASE_URL = "jdbc:mysql://localhost:3306/"+DATABASE_NAME+"?useUnicode=true&characterEncoding=gb2312&useSSL=false";
     
-    private static void createConnection(){
+    static{
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            con  = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+databaseName+"?useUnicode=true&characterEncoding=gb2312&useSSL=false", userId,databasePassword);
-        }catch(Exception ex){
-            ex.printStackTrace();
+        }catch(ClassNotFoundException ex){
+            throw new RuntimeException();
         }
     }
-    
-    public static PreparedStatement getStatement(String sqlStatement) throws SQLException{
-        if(con == null){
-            DbUtil.createConnection();
+    public static Connection createConnection(){
+        Connection con = null;
+        try {
+            con  = DriverManager.getConnection(DATABASE_URL, USRE_ID,DATABASE_PASSWORD);
+        } catch (SQLException ex) {
+            Logger.getLogger(DbUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return con.prepareStatement(sqlStatement);        
+        return con;
     }
     
-    public static Statement getSqlStatement() throws SQLException{
-        if(con == null){
-            DbUtil.createConnection();
-        }
-        return con.createStatement();
+    public static void free(Connection conn, Statement st, ResultSet rs){
+        try{  
+            if(rs != null){  
+                rs.close();  
+            }  
+        }catch(SQLException e){  
+            e.printStackTrace();  
+        }finally{  
+            try{  
+                if(st != null){  
+                    st.close();  
+                }  
+            }catch(SQLException e){  
+                e.printStackTrace();  
+            }finally{  
+                try{  
+                    if(conn != null){  
+                        conn.close();  
+                    }  
+                }catch(SQLException e){  
+                    e.printStackTrace();  
+                }  
+            }  
+        }  
     }
 }

@@ -6,6 +6,7 @@
 package examesystem;
 
 import dbUtil.DbUtil;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -269,6 +270,8 @@ public class ExamPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
+        Connection conn = null;
+        PreparedStatement ps = null;
         try {
             // TODO add your handling code here:
             int grade = 0;
@@ -289,7 +292,8 @@ public class ExamPanel extends javax.swing.JPanel {
             }
             
             JOptionPane.showMessageDialog(this, "考试结束你的分数是" + grade, "成绩", JOptionPane.ERROR_MESSAGE);
-            PreparedStatement ps = DbUtil.getStatement("insert into score (`user_id`, `sc`)values(?, ?)");
+            conn = DbUtil.createConnection();
+            ps = conn.prepareStatement("insert into score (`user_id`, `sc`)values(?, ?)");
             ps.setString(1, MainFrame.datas.get("id"));
             ps.setInt(2, grade);
             ps.execute();
@@ -299,8 +303,9 @@ public class ExamPanel extends javax.swing.JPanel {
             MainFrame.mainFrame.validate();
         } catch (SQLException ex) {
             Logger.getLogger(ExamPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }finally{
+            DbUtil.free(conn, ps, result);
+        }  
     }//GEN-LAST:event_confirmActionPerformed
 
 
@@ -358,8 +363,11 @@ public class ExamPanel extends javax.swing.JPanel {
     private void setData() {
         Random random = new Random();
         int startIndex = random.nextInt(5);
+        Connection conn = null;
+        PreparedStatement ps = null;
         try {
-            PreparedStatement ps = DbUtil.getStatement("select * from test where testID >= ? LIMIT 5");
+            conn = DbUtil.createConnection();
+            ps = conn.prepareStatement("select * from test where testID >= ? LIMIT 5");
             ps.setInt(1, startIndex);
             result = ps.executeQuery();
             for(int i=0; i < questionLabels.size();i++){

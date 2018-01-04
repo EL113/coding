@@ -8,6 +8,7 @@ package examesystem;
 import dbUtil.DbUtil;
 import java.awt.HeadlessException;
 import java.awt.event.ItemEvent;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -476,8 +477,11 @@ public class AdministerPanel extends javax.swing.JPanel {
         }else if (p1.length() < 6) {
             JOptionPane.showMessageDialog(this, "密码不得少于6位", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
+            Connection conn = null;
+            PreparedStatement ps = null;
             try {
-                PreparedStatement ps = DbUtil.getStatement("update users set sex=?,email=?,phone=?,password=? where id = ?");
+                conn = DbUtil.createConnection();
+                ps = conn.prepareStatement("update users set sex=?,email=?,phone=?,password=? where id = ?");
                 ps.setInt(1, gender);
                 ps.setString(2, email);
                 ps.setString(3, phone);
@@ -487,6 +491,8 @@ public class AdministerPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "修改成功！", "Succesed", JOptionPane.INFORMATION_MESSAGE);
             } catch (HeadlessException | SQLException e) {
                 e.printStackTrace();
+            }finally{
+                DbUtil.free(conn, ps, null);
             }
         }
         changeEditable(false);
@@ -499,12 +505,17 @@ public class AdministerPanel extends javax.swing.JPanel {
         for(String selectedUser: selectedUsers){
             int endIndex = selectedUser.indexOf(" 姓名");
             String userId = selectedUser.substring(5, endIndex);
+            Connection conn = null;
+            PreparedStatement ps = null;
             try {
-                PreparedStatement ps = DbUtil.getStatement("delete from users where id = ?");
+                conn = DbUtil.createConnection();
+                ps = conn.prepareStatement("delete from users where id = ?");
                 ps.setString(1, userId);
                 ps.execute();
             } catch (SQLException ex) {
                 Logger.getLogger(AdministerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                DbUtil.free(conn, ps, null);
             }
         }
         JOptionPane.showMessageDialog(this, "修改成功！", "Succesed", JOptionPane.INFORMATION_MESSAGE);
@@ -517,10 +528,14 @@ public class AdministerPanel extends javax.swing.JPanel {
         String[] empty = {" "};
         userList.setListData(empty);
         String searchKey = userQuery.getText();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet result = null;
         try {
-            PreparedStatement ps = DbUtil.getStatement("select * from users where "+searchCondition+"=?");
+            conn = DbUtil.createConnection();
+            ps = conn.prepareStatement("select * from users where "+searchCondition+"=?");
             ps.setString(1, searchKey);
-            ResultSet result = ps.executeQuery();
+            result = ps.executeQuery();
             while(result.next()){
                 StringBuilder userStr = new StringBuilder();
                 long id = result.getLong("id");
@@ -546,6 +561,8 @@ public class AdministerPanel extends javax.swing.JPanel {
             userList.setModel(jListModel);
         } catch (SQLException ex) {
             Logger.getLogger(AdministerPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            DbUtil.free(conn, ps, result);
         }
     }//GEN-LAST:event_searchUserButtonActionPerformed
 
@@ -573,12 +590,17 @@ public class AdministerPanel extends javax.swing.JPanel {
         for(String scoreDel: scoreDelList){
             int endIndex = scoreDel.indexOf("  用户");
             String scoreDelId = scoreDel.substring(5, endIndex);
-            try {
-                PreparedStatement ps = DbUtil.getStatement("delete from score where id = ?");
+            Connection conn = null;
+            PreparedStatement ps = null;
+        try {
+            conn = DbUtil.createConnection();
+            ps = conn.prepareStatement("delete from score where id = ?");
                 ps.setString(1, scoreDelId);
                 ps.execute();
             } catch (SQLException ex) {
                 Logger.getLogger(AdministerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                DbUtil.free(conn, ps, null);
             }
         }
         JOptionPane.showMessageDialog(this, "修改成功！", "Succesed", JOptionPane.INFORMATION_MESSAGE);
@@ -600,10 +622,13 @@ public class AdministerPanel extends javax.swing.JPanel {
         scores.clear();
         String scoreSearch = "select score.id, score.user_id, score.sc, score.time, users.name from users inner join score on users.id = score.user_id where "
                 + searchCondition + conditionModifier + scoreQueryText.getText();
-        System.out.println(scoreSearch);
+        Connection conn = null;
+        Statement ps = null;
+        ResultSet result = null;
         try {
-            Statement statement = DbUtil.getSqlStatement();
-            ResultSet result = statement.executeQuery(scoreSearch);
+            conn = DbUtil.createConnection();
+            ps = conn.createStatement();
+            result = ps.executeQuery(scoreSearch);
             while(result.next()){
                 StringBuilder scoreBuilder = new StringBuilder();
                 String testId = result.getString("id");
@@ -620,6 +645,8 @@ public class AdministerPanel extends javax.swing.JPanel {
             }
         } catch (SQLException ex) {
             Logger.getLogger(AdministerPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            DbUtil.free(conn, ps, result);
         }
         ListModel jListModel =  new DefaultComboBoxModel(listToArray(scores));
         scoreList.setModel(jListModel);
@@ -641,12 +668,17 @@ public class AdministerPanel extends javax.swing.JPanel {
         for(String selectedUser: selectedUsers){
             int endIndex = selectedUser.indexOf(" 姓名");
             String userId = selectedUser.substring(5, endIndex);
+            Connection conn = null;
+            PreparedStatement ps = null;
             try {
-                PreparedStatement ps = DbUtil.getStatement("update users set root = 1 where id = ?");
+                conn = DbUtil.createConnection();
+                ps = conn.prepareStatement("update users set root = 1 where id = ?");
                 ps.setString(1, userId);
                 ps.execute();
             } catch (SQLException ex) {
                 Logger.getLogger(AdministerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                DbUtil.free(conn, ps, null);
             }
         }
         JOptionPane.showMessageDialog(this, "修改成功！", "Succesed", JOptionPane.INFORMATION_MESSAGE);
@@ -659,12 +691,17 @@ public class AdministerPanel extends javax.swing.JPanel {
         for(String selectedUser: selectedUsers){
             int endIndex = selectedUser.indexOf(" 姓名");
             String userId = selectedUser.substring(5, endIndex);
+            Connection conn = null;
+            PreparedStatement ps = null;
             try {
-                PreparedStatement ps = DbUtil.getStatement("update users set root = 0 where id = ?");
+                conn = DbUtil.createConnection();
+                ps = conn.prepareStatement("update users set root = 0 where id = ?");
                 ps.setString(1, userId);
                 ps.execute();
             } catch (SQLException ex) {
                 Logger.getLogger(AdministerPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                DbUtil.free(conn, ps, null);
             }
         }
         JOptionPane.showMessageDialog(this, "修改成功！", "Succesed", JOptionPane.INFORMATION_MESSAGE);
@@ -680,11 +717,15 @@ public class AdministerPanel extends javax.swing.JPanel {
         nameText.setEditable(true);
         changeEditable(true);
         id = MainFrame.datas.get("id");
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet result = null;
         try {
-            PreparedStatement ps = DbUtil.getStatement("select * from users where id = ?");
+            conn = DbUtil.createConnection();
+            ps = conn.prepareStatement("select * from users where id = ?");
             ps.setString(1, id);
             //填充用户信息
-            ResultSet result = ps.executeQuery();
+            result = ps.executeQuery();
             if(result.next()){
                String name = result.getString("name");
                String sex = result.getString("sex");
@@ -709,6 +750,8 @@ public class AdministerPanel extends javax.swing.JPanel {
             }
         } catch (SQLException ex) {
             Logger.getLogger(StudentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            DbUtil.free(conn, ps, result);
         }
         changeEditable(false);
         idText.setEditable(false);

@@ -253,8 +253,11 @@ public class RegisterPanel extends javax.swing.JPanel {
         }else if (p1.length() < 6) {
             JOptionPane.showMessageDialog(this, "密码不得少于6位", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
+            Connection conn = null;
+            PreparedStatement ps = null;
             try {
-                PreparedStatement ps = DbUtil.getStatement("insert into users(id,name,sex,email,phone,password,root,idcard) values(?,?,?,?,?,?,0,?)");
+                conn = DbUtil.createConnection();
+                ps = conn.prepareStatement("insert into users(id,name,sex,email,phone,password,root,idcard) values(?,?,?,?,?,?,0,?)");
                 ps.setString(1, id);//去替代上面的几个问号
                 ps.setString(2, name);
                 ps.setInt(3, gender);
@@ -271,6 +274,8 @@ public class RegisterPanel extends javax.swing.JPanel {
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.print("eeeee!");
+            }finally{
+                DbUtil.free(conn, ps, null);
             }
         }
 

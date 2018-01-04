@@ -7,6 +7,7 @@ package examesystem;
 
 import dbUtil.DbUtil;
 import java.awt.HeadlessException;
+import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -395,8 +396,11 @@ public class StudentPanel extends javax.swing.JPanel {
         }else if (p1.length() < 6) {
             JOptionPane.showMessageDialog(this, "密码不得少于6位", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
+            Connection conn = null;
+            PreparedStatement ps = null;
             try {
-                PreparedStatement ps = DbUtil.getStatement("update users set sex=?,email=?,phone=?,password=? where id = ?");
+                conn = DbUtil.createConnection();
+                ps = conn.prepareStatement("update users set sex=?,email=?,phone=?,password=? where id = ?");
                 ps.setInt(1, gender);
                 ps.setString(2, email);
                 ps.setString(3, phone);
@@ -407,6 +411,8 @@ public class StudentPanel extends javax.swing.JPanel {
             } catch (HeadlessException | SQLException e) {
                 e.printStackTrace();
                 System.out.print("eeeee!");
+            }finally{
+                DbUtil.free(conn, ps, null);
             }
         }
         changeEditable(false);
@@ -468,13 +474,19 @@ private int gender = 0;
         nameText.setEditable(true);
         changeEditable(true);
         id = MainFrame.datas.get("id");
+        Connection conn = null;
+        PreparedStatement ps = null;
+        PreparedStatement scorePs = null;
+        ResultSet result = null;
+        ResultSet scoreResult = null;
         try {
-            PreparedStatement ps = DbUtil.getStatement("select * from users where id = ?");
-            PreparedStatement scorePs = DbUtil.getStatement("select * from score where user_id = ?");
+            conn = DbUtil.createConnection();
+            ps = conn.prepareStatement("select * from users where id = ?");
+            scorePs = conn.prepareStatement("select * from score where user_id = ?");
             scorePs.setString(1, id);
             ps.setString(1, id);
             //填充用户信息
-            ResultSet result = ps.executeQuery();
+            result = ps.executeQuery();
             if(result.next()){
                String name = result.getString("name");
                String sex = result.getString("sex");
@@ -498,7 +510,7 @@ private int gender = 0;
                }
             }
             //填充用户分数
-            ResultSet scoreResult = scorePs.executeQuery();
+            scoreResult = scorePs.executeQuery();
             ArrayList<String> scores = new ArrayList<>();
             while(scoreResult.next()){
                 StringBuilder stringBuilder = new StringBuilder();
@@ -519,6 +531,9 @@ private int gender = 0;
             scoreList.setModel(jListModel);
         } catch (SQLException ex) {
             Logger.getLogger(StudentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            DbUtil.free(conn, ps, result);
+            DbUtil.free(null, null, scoreResult);
         }
         changeEditable(false);
         idText.setEditable(false);
