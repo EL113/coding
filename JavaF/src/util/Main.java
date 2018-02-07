@@ -1,6 +1,6 @@
 package util;
 
-import practice.Chapter8;
+import practice.Chapter17;
 
 /*
  * 关于接口interface:相当于把所有实现了同一个接口的类分到了一个组里面，他们有类似的行为特征；
@@ -10,7 +10,7 @@ import practice.Chapter8;
 public class Main {
 	
 	public static void main(String[] args) {
-		Test test = new Chapter8();
+		Test test = new Chapter17();
 		SystemOut.print(test);
 	}
 }

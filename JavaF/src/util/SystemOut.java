@@ -17,6 +17,7 @@ public class SystemOut {
 			qString = scanner.next();
 			scanner.nextLine();
 		}
+		System.out.println("退出完成");
 		scanner.close();
 	}
 }
