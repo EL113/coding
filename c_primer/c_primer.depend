@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1519307876 source:e:\program\eclipse\eclipse-cpp-oxygen-2-win32-x86_64\code_block_workspace\c_primer\main.c
+	<stdio.h>
+	<stdlib.h>
+
