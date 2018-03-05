@@ -3,7 +3,8 @@
 	<stdio.h>
 	<stdlib.h>
 
-<<<<<<< HEAD
+1519307876 D
+
 1519309068 source:e:\projects\coding\c_primer\chapter2.c
 	<c_primer.h>
 
@@ -16,21 +17,37 @@
 	<c_primer.h>
 
 1519974756 source:e:\projects\coding\c_primer\chapter6.c
-=======
+
 1519787949 source:e:\private\coding\c_primer\chapter2.c
 	<c_primer.h>
 
-1519875028 e:\private\coding\c_primer\c_primer.h
+1520232098 e:\private\coding\c_primer\c_primer.h
 
 1519801008 source:e:\private\coding\c_primer\chapter3.c
 	<c_primer.h>
 
-1519875040 source:e:\private\coding\c_primer\main.c
+1520232674 source:e:\private\coding\c_primer\main.c
+	<c_primer.h>
 	<stdio.h>
 	<stdlib.h>
 
-1519873828 source:e:\private\coding\c_primer\chapter4.c
->>>>>>> 273db42d8ee72b1ead4d8da8f9cf645bf49160be
+1519875070 source:e:\private\coding\c_primer\chapter4.c
 	<c_primer.h>
 	<stdio.h>
+	<string.h>
+
+1519873828 db42d8ee72b1ead4d8da8f9cf645bf49160be
+	<c_primer.h>
+	<stdio.h>
+
+1520220393 source:e:\private\coding\c_primer\chapter5.c
+	<c_primer.h>
+
+1520220535 source:e:\private\coding\c_primer\chapter6.c
+	<c_primer.h>
+	<stdio.h>
+
+1520232643 source:e:\private\coding\c_primer\chapter7.c
+	<stdio.h>
+	<c_primer.h>
 
