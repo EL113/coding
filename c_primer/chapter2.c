@@ -1,7 +1,7 @@
 #include <c_primer.h>
 
 void print_name(){
-    printf("daniel hunt\n");
-    printf("daniel\nhunt\n");
-    printf("daniel hunt");
+    printf("Daniel hunt\n");
+    printf("Daniel\nhunt\n");
+    printf("Daniel hunt");
 }
