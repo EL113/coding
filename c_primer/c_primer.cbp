@@ -36,6 +36,12 @@
 		<Unit filename="chapter2.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="chapter5.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="chapter6.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
