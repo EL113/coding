@@ -30,3 +30,7 @@ void chapter6_18();
 void chapter7_1();
 
 void chapter7_2();
+
+void chapter8_1();
+
+void chapter8_4();

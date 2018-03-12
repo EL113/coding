@@ -21,12 +21,12 @@
 1519787949 source:e:\private\coding\c_primer\chapter2.c
 	<c_primer.h>
 
-1520232098 e:\private\coding\c_primer\c_primer.h
+1520316269 e:\private\coding\c_primer\c_primer.h
 
 1519801008 source:e:\private\coding\c_primer\chapter3.c
 	<c_primer.h>
 
-1520232674 source:e:\private\coding\c_primer\main.c
+1520316649 source:e:\private\coding\c_primer\main.c
 	<c_primer.h>
 	<stdio.h>
 	<stdlib.h>
@@ -47,7 +47,8 @@
 	<c_primer.h>
 	<stdio.h>
 
-1520232643 source:e:\private\coding\c_primer\chapter7.c
+1520233606 source:e:\private\coding\c_primer\chapter7.c
 	<stdio.h>
 	<c_primer.h>
+	<ctype.h>
 
