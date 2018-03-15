@@ -3,20 +3,25 @@
 	<stdio.h>
 	<stdlib.h>
 
-<<<<<<< HEAD
-1519309068 source:e:\projects\coding\c_primer\chapter2.c
+1519307876 D
+
+1520220212 source:e:\projects\coding\c_primer\chapter2.c
 	<c_primer.h>
 
-1519974262 e:\projects\coding\c_primer\c_primer.h
+1521030372 e:\projects\coding\c_primer\c_primer.h
 
-1519974782 source:e:\projects\coding\c_primer\main.c
+1521033229 source:e:\projects\coding\c_primer\main.c
 	<c_primer.h>
+	<stdio.h>
+	<stdlib.h>
 
 1519915190 source:e:\projects\coding\c_primer\chapter5.c
 	<c_primer.h>
 
-1519974756 source:e:\projects\coding\c_primer\chapter6.c
-=======
+1519974921 source:e:\projects\coding\c_primer\chapter6.c
+	<c_primer.h>
+	<stdio.h>
+
 1519787949 source:e:\private\coding\c_primer\chapter2.c
 	<c_primer.h>
 
@@ -30,7 +35,20 @@
 	<stdlib.h>
 
 1519873828 source:e:\private\coding\c_primer\chapter4.c
->>>>>>> 273db42d8ee72b1ead4d8da8f9cf645bf49160be
+
+1519873828 db42d8ee72b1ead4d8da8f9cf645bf49160be
 	<c_primer.h>
 	<stdio.h>
+
+1520220212 source:e:\projects\coding\c_primer\chapter3.c
+	<c_primer.h>
+
+1520220212 source:e:\projects\coding\c_primer\chapter4.c
+	<c_primer.h>
+	<stdio.h>
+	<string.h>
+
+1521030504 source:e:\projects\coding\c_primer\chapter9.c
+	<string.h>
+	<c_primer.h>
 

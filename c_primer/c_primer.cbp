@@ -48,6 +48,12 @@
 		<Unit filename="chapter6.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="chapter9.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />

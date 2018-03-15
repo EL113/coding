@@ -27,5 +27,4 @@ void chapter6_17();
 
 void chapter6_18();
 
-//chapter9
 char* chline(char* line, int i, int j);
