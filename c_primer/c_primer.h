@@ -35,5 +35,14 @@ void chapter8_1();
 
 void chapter8_4();
 
-//chapter9
-char* chline(char* line, int i, int j);
+//chapter9, 数组作为形参时不用添加大小
+int chline(char* line, char outstring[], int i, int j);
+
+//chapter10
+int copy_arr(double target1[], double source[], int len);
+
+int copy_ptr(double target1[], double source[], int len);
+
+int copy_ptrs(double target1[], double source[], double * lastptr);
+
+//chapter11
