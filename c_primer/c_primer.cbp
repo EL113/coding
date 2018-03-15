@@ -48,7 +48,11 @@
 		<Unit filename="chapter6.c">
 			<Option compilerVar="CC" />
 		</Unit>
+<<<<<<< HEAD
 		<Unit filename="chapter9.c">
+=======
+		<Unit filename="chapter7.c">
+>>>>>>> 9f3ec28037e15d4d2fd0e938ee251cc481425bd8
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="main.c">

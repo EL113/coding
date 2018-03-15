@@ -27,4 +27,15 @@ void chapter6_17();
 
 void chapter6_18();
 
+<<<<<<< HEAD
+//chapter9
 char* chline(char* line, int i, int j);
+=======
+void chapter7_1();
+
+void chapter7_2();
+
+void chapter8_1();
+
+void chapter8_4();
+>>>>>>> 9f3ec28037e15d4d2fd0e938ee251cc481425bd8

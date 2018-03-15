@@ -19,6 +19,11 @@ int main()
     //chapter6_3();
     //chapter6_17();
     //chapter6_18();
+	//chapter7_1();
+    //chapter7_2();
+    //chapter8_1();
+    //chapter8_4();
+
     char outstring[10];
     outstring[0] = chline(instring, 2, 5);
     printf("%c", outstring[0]);
